@@ -39,7 +39,7 @@ services:
       DB_PORT: "3306"
       REDIS_CACHE: redis-cache:6379
       REDIS_QUEUE: redis-queue:6379
-      SOCKETIO_PORT: "9000"
+      SOCKETIO_PORT: "5679"
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
@@ -112,9 +112,9 @@ services:
     command:
       - nginx-entrypoint.sh
     environment:
-      BACKEND: backend:8000
+      BACKEND: backend:5678
       FRAPPE_SITE_NAME_HEADER: frontend
-      SOCKETIO: websocket:9000
+      SOCKETIO: websocket:5679
       UPSTREAM_REAL_IP_ADDRESS: 127.0.0.1
       UPSTREAM_REAL_IP_HEADER: X-Forwarded-For
       UPSTREAM_REAL_IP_RECURSIVE: "off"
@@ -124,7 +124,7 @@ services:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
     ports:
-      - "5678:5678"
+      - "5678:5679"
 
   queue-long:
     image: frappe/erpnext:v16.23.0
